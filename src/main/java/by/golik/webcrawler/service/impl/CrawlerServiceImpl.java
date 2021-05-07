@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.*;
@@ -30,9 +31,10 @@ public class CrawlerServiceImpl implements CrawlerService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(CrawlerServiceImpl.class);
     private Set<URL> urlSet = ConcurrentHashMap.newKeySet();
+
     private ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-    @Value("${CRAWLER_TIMEOUT_MILLIS : 10000}")
+    @Value("${CRAWLER_TIMEOUT_MILLIS}")
     private int timeoutInMillis;
 
 
@@ -67,7 +69,6 @@ public class CrawlerServiceImpl implements CrawlerService {
             LOGGER.warn("Invalid URL: {}", url);
             throw new CrawlerException("Url must be valid");
         }
-
         Crawler crawler = crawlURL(singletonList(url), maxDepth);
         urlSet.clear();
         return crawler;
@@ -90,6 +91,7 @@ public class CrawlerServiceImpl implements CrawlerService {
                 LOGGER.info("Not a valid URL: {}. Skipping...", String.valueOf(url));
                 continue;
             }
+
             urlSet.add(url);
 
             SingleCrawlerCallable singleCrawlerCallable = new SingleCrawlerCallable(url, timeoutInMillis);
@@ -152,4 +154,5 @@ public class CrawlerServiceImpl implements CrawlerService {
 
         return crawler;
     }
+
 }

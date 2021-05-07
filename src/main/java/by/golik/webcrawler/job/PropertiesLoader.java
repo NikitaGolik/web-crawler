@@ -14,7 +14,7 @@ public class PropertiesLoader {
         InputStream is = null;
         try {
             prop = new Properties();
-            is = PropertiesLoader.class.getClassLoader().getResourceAsStream("static/config.properties");
+            is = PropertiesLoader.class.getClassLoader().getResourceAsStream("application.properties");
             prop.load(is);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -23,7 +23,6 @@ public class PropertiesLoader {
         }
     }
     public static final String TERMS = prop.getProperty("terms");
-    public static final String START_URL= prop.getProperty("startURL");
     public static final Integer MAX_DEPTH= Integer.parseInt(prop.getProperty("maxDepth"));
     public static final Integer MAX_URL= Integer.parseInt(prop.getProperty("maxURL"));
 

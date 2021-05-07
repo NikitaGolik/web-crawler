@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "maxURL",
+      "type": "java.lang.String",
+      "description": "Description for maxURL."
+  }
+] }

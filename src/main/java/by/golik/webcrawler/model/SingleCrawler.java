@@ -1,5 +1,7 @@
 package by.golik.webcrawler.model;
 
+import by.golik.webcrawler.job.PropertiesLoader;
+
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +13,7 @@ public class SingleCrawler {
     private URL url;
     private String title;
     private List<URL> links;
+
 
     public SingleCrawler(URL url, String title, List<URL> links) {
         this.url = url;

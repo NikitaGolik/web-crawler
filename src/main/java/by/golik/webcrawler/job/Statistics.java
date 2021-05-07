@@ -20,12 +20,12 @@ public class Statistics {
 
     public static void writeTenFirst() throws IOException {
         getTenFirst().stream().map(StatisticsRecord::getShortStatistics).forEach(System.out::println);
-
+        CSVWriter.write(getTenFirst(), "out10.csv");
     }
 
 
     public static void writeAll() throws IOException {
-
+        CSVWriter.write(RECORDS, "out.csv");
     }
 
 }

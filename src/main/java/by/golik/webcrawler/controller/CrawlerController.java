@@ -33,7 +33,7 @@ public class CrawlerController {
     @Autowired
     private CrawlerServiceImpl crawlerService;
 
-    @Value("${CRAWLER_MAX_DEPTH : 3}")
+    @Value("${maxDepth}")
     private int MAX_DEPTH;
 
 
