@@ -2,6 +2,7 @@ package by.golik.webcrawler.model;
 
 import by.golik.webcrawler.job.PropertiesLoader;
 
+import javax.persistence.*;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -9,9 +10,13 @@ import java.util.Objects;
 /**
  * @author Nikita Golik
  */
+
 public class SingleCrawler {
+
     private URL url;
+
     private String title;
+
     private List<URL> links;
 
 

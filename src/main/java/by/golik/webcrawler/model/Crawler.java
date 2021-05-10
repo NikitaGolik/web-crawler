@@ -1,16 +1,27 @@
 package by.golik.webcrawler.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Objects;
 
 /**
  * @author Nikita Golik
  */
+//Вам необходимо спроектировать и создать простой веб-сканер. Он должен принять URL-адрес в качестве параметра и создать
+// дерево дочерних страниц, связанных с URL-адресом. Ожидается, что ваше приложение предоставляет решение для глубокого
+// сканирования, что означает, что оно проходит через несколько уровней иерархии ссылок.
+//
+//Создайте простую конечную точку API, которая будет принимать URL-адрес в качестве параметра и возвращать json,
+// представляющий дерево, описанное выше. Каждый узел должен иметь как минимум следующие поля: URL, заголовок, узлы.
 
 public class Crawler {
 
     private String url;
     private String title;
+
     private List<Crawler> nodes;
 
     public Crawler() {

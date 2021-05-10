@@ -11,6 +11,7 @@ public class Statistics {
 
     public static List<StatisticsRecord> getTenFirst() {
 
+        //стрим - сортировка - по количеству вхождений
         return RECORDS.stream()
                 .sorted(Comparator.comparingInt(StatisticsRecord::getTotalHits)
                         .reversed())
@@ -19,7 +20,9 @@ public class Statistics {
     }
 
     public static void writeTenFirst() throws IOException {
+        //на консоль
         getTenFirst().stream().map(StatisticsRecord::getShortStatistics).forEach(System.out::println);
+        //в файл
         CSVWriter.write(getTenFirst(), "out10.csv");
     }
 
