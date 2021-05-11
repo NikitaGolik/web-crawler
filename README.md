@@ -9,6 +9,14 @@ some terms on the page and collect statistics, e.g. </p>
 
 <p>https://en.wikipedia.org/wiki/Elon_Musk</p>
 
+# Configuration
+
+<p>In file application.properties you can point out your own settings such as
+- max depth
+- max count of urls
+- terms
+- start page </p>
+
 # Run
 <p>mvn clean install</p>
 <p>mvn exec:java</p>
