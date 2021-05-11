@@ -11,19 +11,21 @@ import java.util.stream.Collectors;
 
 import static by.golik.webcrawler.util.WriterToCSV.write;
 
-
-public class StatisticsShower {
-    public static final List<StatisticsGetter> RECORDS = new CopyOnWriteArrayList<>();
+/**
+ * @author Nikita Golik
+ */
+public class CrawlStatShower {
+    public static final List<CrawlStatGetter> RECORDS = new CopyOnWriteArrayList<>();
 
     /**
      * This method finds TOP-10 by the number of occurrences
      * @return - list of top-10
      */
-    public static List<StatisticsGetter> getTenFirst() {
+    public static List<CrawlStatGetter> getTenFirst() {
 
         // sorting - by the number of occurrences
         return RECORDS.stream()
-                .sorted(Comparator.comparingInt(StatisticsGetter::getTotalHits)
+                .sorted(Comparator.comparingInt(CrawlStatGetter::getTotalHits)
                         .reversed())
                 .limit(10)
                 .collect(Collectors.toList());
@@ -35,7 +37,7 @@ public class StatisticsShower {
      */
     public static void writeTenFirst() throws IOException {
         // on console
-        getTenFirst().stream().map(StatisticsGetter::getShortStatistics).forEach(System.out::println);
+        getTenFirst().stream().map(CrawlStatGetter::getShortStatistics).forEach(System.out::println);
         // to file
         write(getTenFirst(), "top10.csv");
     }

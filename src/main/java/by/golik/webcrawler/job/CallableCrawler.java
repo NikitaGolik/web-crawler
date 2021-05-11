@@ -1,6 +1,6 @@
 package by.golik.webcrawler.job;
 
-import by.golik.webcrawler.statistics.TermsStaticticParser;
+import by.golik.webcrawler.statistics.TermsTransformer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -13,10 +13,13 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
-public class CrawlerCallable implements Callable<CrawlerCallable> {
+/**
+ * @author Nikita Golik
+ */
+public class CallableCrawler implements Callable<CallableCrawler> {
 
     public static final int TIMEOUT = 60000;
-    private static final Logger logger = LogManager.getLogger(CrawlerCallable.class);
+    private static final Logger logger = LogManager.getLogger(CallableCrawler.class);
     // url address
     private final URL url;
     // depth
@@ -24,7 +27,7 @@ public class CrawlerCallable implements Callable<CrawlerCallable> {
     // received set from url addresses
     private final Set<URL> urlSet = new HashSet<>();
 
-    public CrawlerCallable(URL url, int depth) {
+    public CallableCrawler(URL url, int depth) {
         this.url = url;
         this.depth = depth;
     }
@@ -34,7 +37,7 @@ public class CrawlerCallable implements Callable<CrawlerCallable> {
      * @return - object of CrawlerCallable
      */
     @Override
-    public CrawlerCallable call() {
+    public CallableCrawler call() {
         logger.info("Crawling url {} {} {}", depth, url, Thread.currentThread().getName());
 
         Document doc = null;
@@ -65,7 +68,7 @@ public class CrawlerCallable implements Callable<CrawlerCallable> {
             );
         }
 
-        new TermsStaticticParser(url).collect(doc);
+        new TermsTransformer(url).collect(doc);
 
         return this;
     }

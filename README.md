@@ -10,6 +10,6 @@ some terms on the page and collect statistics, e.g. </p>
 <p>https://en.wikipedia.org/wiki/Elon_Musk</p>
 
 # Run
-<p>mvn compile</p>
+<p>mvn clean install</p>
 <p>mvn exec:java</p>
 
