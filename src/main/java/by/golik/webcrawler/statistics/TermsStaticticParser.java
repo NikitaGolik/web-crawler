@@ -1,7 +1,6 @@
-package by.golik.webcrawler.job;
+package by.golik.webcrawler.statistics;
 
 import org.jsoup.nodes.Document;
-
 import java.net.URL;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -16,15 +15,18 @@ public class TermsStaticticParser {
     public void collect(Document document) {
         if (document != null) {
             String text = document.body().text().toLowerCase();
-            StatisticsRecord statisticsRecord = new StatisticsRecord(url);
-            Map<String, Integer> statistics = statisticsRecord.getStatistics();
+            StatisticsGetter statisticsGetter = new StatisticsGetter(url);
+            Map<String, Integer> statistics = statisticsGetter.getStatistics();
 
-            statistics.keySet().stream().forEach(term -> {
+
+            statistics.keySet().forEach(term -> {
                 statistics.put(term, (int) Pattern.compile(term.toLowerCase()).matcher(text).results().count());
             });
-            Statistics.RECORDS.add(statisticsRecord);
+            StatisticsShower.RECORDS.add(statisticsGetter);
+
         } else {
-            Statistics.RECORDS.add(new StatisticsRecord(url));
+            StatisticsShower.RECORDS.add(new StatisticsGetter(url));
+
         }
 
     }
