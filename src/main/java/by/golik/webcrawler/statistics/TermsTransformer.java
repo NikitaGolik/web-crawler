@@ -33,7 +33,6 @@ public class TermsTransformer {
 
         } else {
             CrawlStatShower.RECORDS.add(new CrawlStatGetter(url));
-
         }
 
     }

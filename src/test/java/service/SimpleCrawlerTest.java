@@ -1,3 +1,5 @@
+package service;
+
 import by.golik.webcrawler.service.SimpleCrawler;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,13 +13,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author Nikita Golik
  */
-public class CrawlerTest {
+public class SimpleCrawlerTest {
 
     private final URL startURL = new URL("https://en.wikipedia.org/wiki/Elon_Musk");
 
     private SimpleCrawler simpleCrawler;
 
-    public CrawlerTest() throws MalformedURLException {
+    public SimpleCrawlerTest() throws MalformedURLException {
     }
 
     @Before
