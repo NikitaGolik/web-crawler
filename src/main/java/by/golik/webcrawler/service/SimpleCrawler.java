@@ -55,7 +55,6 @@ public class SimpleCrawler {
         while (checkPages());
             logger.info("Found {} urls", finalSetOfURLs.size());
             System.out.println();
-
     }
 
     /**
